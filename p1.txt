@@ -1,0 +1,65 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+
+abstract class Contribuinte {
+    private String nome;
+    private double rendaAnual;
+
+    public Contribuinte(String nome, double rendaAnual) {
+        this.nome = nome;
+        this.rendaAnual = rendaAnual;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public double getRendaAnual() {
+        return rendaAnual;
+    }
+
+    public abstract double calcularImposto();
+}
+
+class PessoaFisica extends Contribuinte {
+    private double gastosSaude;
+
+    public PessoaFisica(String nome, double rendaAnual, double gastosSaude) {
+        super(nome, rendaAnual);
+        this.gastosSaude = gastosSaude;
+    }
+
+    @Override
+    public double calcularImposto() {
+        double imposto;
+        if (getRendaAnual() < 20000.00) {
+            imposto = getRendaAnual() * 0.15;
+        } else {
+            imposto = getRendaAnual() * 0.25;
+        }
+        imposto -= gastosSaude * 0.5;
+        return Math.max(imposto, 0); // Garantir que o imposto não seja negativo
+    }
+}
+
+class PessoaJuridica extends Contribuinte {
+    private int numeroFuncionarios;
+
+    public PessoaJuridica(String nome, double rendaAnual, int numeroFuncionarios) {
+        super(nome, rendaAnual);
+        this.numeroFuncionarios = numeroFuncionarios;
+    }
+
+    @Override
+    public double calcularImposto() {
+        if (numeroFuncionarios > 10) {
+            return getRendaAnual() * 0.14;
+        } else {
+            return getRendaAnual() * 0.16;
+        }
+    }
+}
+
+
