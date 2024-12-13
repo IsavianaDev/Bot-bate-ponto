@@ -3,6 +3,7 @@ Este é um bot para Discord que ajuda a monitorar e controlar o tempo de trabalh
 
 # Funcionalidades
 Iniciar Ponto: Comando !iniciar para começar a contar o tempo.
+
 Finalizar Ponto: Botão "Finalizar" para encerrar o ponto e calcular o tempo total trabalhado.
 Mensagens Embutidas: Mensagens com horários e tempo total em formato amigável.
 
